@@ -1,0 +1,17 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: 
+      name: prod
+      url: https://github.com
+    steps:
+      - name: deploy
+      # fake step
+        uses: actions/checkout@v3
