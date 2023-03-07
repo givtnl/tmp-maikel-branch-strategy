@@ -6,21 +6,43 @@ on:
       - main
 
 jobs:
-  deployment_test:
+  deployment-test-US:
     runs-on: ubuntu-latest
     environment:
-      name: test
+      name: test-us
       url: https://google.com
     steps:
       - name: deploy
         # fake step
         uses: actions/checkout@v3
 
-  deployment_prod:
+  deployment-test-EU:
     runs-on: ubuntu-latest
-    needs: deployment_test
     environment:
-      name: prod
+      name: test-eu
+      url: https://google.com
+    steps:
+      - name: deploy
+        # fake step
+        uses: actions/checkout@v3
+
+  deployment-prod-EU:
+    runs-on: ubuntu-latest
+    needs: deployment-test-EU
+    environment:
+      name: prod-eu
+      url: https://github.com
+    steps:
+      - name: deploy
+        # fake step
+        uses: actions/checkout@v3
+
+
+  deployment-prod-US:
+    runs-on: ubuntu-latest
+    needs: deployment-test-US
+    environment:
+      name: prod-us
       url: https://github.com
     steps:
       - name: deploy
