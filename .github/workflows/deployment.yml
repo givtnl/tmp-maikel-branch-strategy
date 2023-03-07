@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
-
+      - develop
+  workflow_dispatch:
+    
 jobs:
   deployment-test-US:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     environment:
       name: test-us
       url: https://google.com
@@ -17,7 +19,7 @@ jobs:
         uses: actions/checkout@v3
 
   deployment-test-EU:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     environment:
       name: test-eu
       url: https://google.com
@@ -27,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
   deployment-prod-EU:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: deployment-test-EU
     environment:
       name: prod-eu
@@ -39,7 +41,7 @@ jobs:
 
 
   deployment-prod-US:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: deployment-test-US
     environment:
       name: prod-us
