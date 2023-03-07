@@ -31,6 +31,7 @@ jobs:
   deployment-prod-EU:
     runs-on: ubuntu-22.04
     needs: deployment-test-EU
+    if: github.ref == 'refs/heads/main'
     environment:
       name: prod-eu
       url: https://github.com
@@ -43,6 +44,7 @@ jobs:
   deployment-prod-US:
     runs-on: ubuntu-22.04
     needs: deployment-test-US
+    if: github.ref == 'refs/heads/main'
     environment:
       name: prod-us
       url: https://github.com
