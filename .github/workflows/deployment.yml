@@ -1,4 +1,4 @@
-name: Deployment 
+name: Deployment
 
 on:
   push:
@@ -6,21 +6,23 @@ on:
       - main
 
 jobs:
-  deployment_prod:
-    runs-on: ubuntu-latest
-    environment: 
-      name: prod
-      url: https://github.com
-    steps:
-      - name: deploy
-      # fake step
-        uses: actions/checkout@v3
   deployment_test:
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: test
       url: https://google.com
     steps:
       - name: deploy
-      # fake step
+        # fake step
+        uses: actions/checkout@v3
+
+  deployment_prod:
+    runs-on: ubuntu-latest
+    needs: deployment_test
+    environment:
+      name: prod
+      url: https://github.com
+    steps:
+      - name: deploy
+        # fake step
         uses: actions/checkout@v3
